@@ -16,26 +16,26 @@ public class ConsecutiveSeriesTest {
 
     @Before
     public void setUp() {
-        consecutiveSeries = new ConsecutiveNumbers();
+        consecutiveNumbers = new ConsecutiveNumbers();
     }
 
     @Test
     public void testForConsecutiveSeriesSuccess() {
-        assertTrue(consecutiveNumbers.isSeriesConsecutive(CONSECUTIVE_SERIES));
+        assertTrue(consecutiveNumbers.isNumbersConsecutive(CONSECUTIVE_SERIES));
     }
 
     @Test
     public void testForNonConsecutiveSeries() {
-        assertFalse(consecutiveNumbers.isSeriesConsecutive(NON_CONSECUTIVE_SERIES));
+        assertFalse(consecutiveNumbers.isNumbersConsecutive(NON_CONSECUTIVE_SERIES));
     }
     @Test
     public void testForSeriesWithRepeatedNumbers() {
-        assertFalse(consecutiveNumbers.isSeriesConsecutive(REPEATED_SERIES));
+        assertFalse(consecutiveNumbers.isNumbersConsecutive(REPEATED_SERIES));
     }
 
     @Test
     public void testForConsecutiveSeriesForInvalidInput() {
-        assertFalse(consecutiveNumbers.isSeriesConsecutive(null));
+        assertFalse(consecutiveNumbers.isNumbersConsecutive(null));
     }
 
 }
