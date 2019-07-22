@@ -16,6 +16,7 @@ public class StudentMarksTest {
 
     @After
     public void tearDown() throws Exception {
+        studentMarks = null;
     }
 
     @Test
@@ -35,5 +36,6 @@ public class StudentMarksTest {
 
         assertEquals("Following is of studentmarks class", expected, actual);
     }
+
 
 }

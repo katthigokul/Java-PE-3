@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.security.InvalidParameterException;
+
 import static org.junit.Assert.*;
 
 public class ChessBoardTest {
@@ -17,15 +19,46 @@ public class ChessBoardTest {
 
     @After
     public void tearDown() throws Exception {
+        cb = null;
     }
 
     @Test
-    public void check() {
-        String expected[][]={{"WW","BB","WW","BB","WW","BB","WW","BB"},{"BB","WW","BB","WW","BB","WW","BB","WW"},{"WW","BB","WW","BB","WW","BB","WW","BB"},{"BB","WW","BB","WW","BB","WW","BB","WW"},{"WW","BB","WW","BB","WW","BB","WW","BB"},{"BB","WW","BB","WW","BB","WW","BB","WW"},{"WW","BB","WW","BB","WW","BB","WW","BB"},{"BB","WW","BB","WW","BB","WW","BB","WW"}};
+    public void  givenROwsAndColumnsShouldReturnChessBoardPattern() {
+        String expected[][] = {{"WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB"}, {"BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW"}, {"WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB"}, {"BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW"}, {"WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB"}, {"BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW"}, {"WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB"}, {"BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW"}};
 
-        String [][] actual = cb.display(8,8);
+        String[][] actual = cb.display(8, 8);
 
-        assertNotEquals("Following is chessPattern output",expected,actual);
+        assertNotEquals("Following is chessPattern output", expected, actual);
+
+    }
+    @Test
+    public void givenROwsAndColumnsShouldReturnChessBoardPatternFailure() {
+        //act
+        String[][] expectedResult = {
+                {"WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB"},
+                {"BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW"},
+                {"WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB"},
+                {"BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW"},
+                {"WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB"},
+                {"BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW"},
+                {"WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW", "BB"},
+                {"BB", "WW", "BB", "WW", "BB", "WW", "BB", "WW", "WW", "WW"}
+        };
+        //assert
+        assertNotEquals(expectedResult, cb.display(8, 8));
     }
 
+    @Test
+    public void givenZeroRowsAndColumnsShouldReturnEmptyArray() {
+        //act
+        String[] expectedResult = {};
+        //assert
+        assertArrayEquals(expectedResult, cb.display(0, 0));
+    }
+
+    @Test(expected = NegativeArraySizeException.class)
+    public void givenInvalidSizeShouldThrowException() {
+        cb.display(-8, 8);
+        cb.display(8, -8);
+    }
 }
